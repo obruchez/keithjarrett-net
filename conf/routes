@@ -1,9 +1,0 @@
-#GET     /                           controllers.HomeController.index()
-GET     /                           controllers.ConcertController.showConcerts
-
-GET     /concerts                   controllers.ConcertController.listConcerts
-POST    /concerts                   controllers.ConcertController.addConcert
-GET     /concerts/:id/setlist       controllers.ConcertController.getSetlist(id: Int)
-POST    /concerts/:id/tracks        controllers.ConcertController.addTrack(id: Int)
-
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

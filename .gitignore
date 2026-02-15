@@ -1,0 +1,23 @@
+# sbt
+target/
+project/target/
+project/project/
+
+# IDE
+.idea/
+.bsp/
+*.iml
+.vscode/
+
+# Play
+logs/
+RUNNING_PID
+
+# OS
+.DS_Store
+
+# Environment
+.env
+
+# Dev environment
+Specifications.md

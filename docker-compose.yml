@@ -1,0 +1,38 @@
+services:
+  app:
+    build: .
+    ports:
+      - "9000:9000"
+    environment:
+      - APPLICATION_SECRET=dGhpc2lzYWRldnNlY3JldGtleXRoYXRpc2xvbmdlbm91Z2hmb3JoczI1Ng==
+      - DB_URL=jdbc:postgresql://db:5432/keithjarrett
+      - DB_USER=keithjarrett
+      - DB_PASSWORD=keithjarrett
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:18
+    environment:
+      - POSTGRES_DB=keithjarrett
+      - POSTGRES_USER=keithjarrett
+      - POSTGRES_PASSWORD=keithjarrett
+    volumes:
+      - pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U keithjarrett"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
